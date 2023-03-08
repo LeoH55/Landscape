@@ -10,20 +10,19 @@ r_change = 1
 g_change = 1
 b_change = 1
 
-rect_x = 0
-rect_y = 300
-rect_change_x = 1
-rect_change_y = 1
+circle_x = 0
+circle_y = 300
+circle_change_x = 1
+circle_change_y = 1
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 RED = (255,0,0)
 GREEN = (50,200,100)
-GREY = (128,128,128)
+PAVEMENT = (128,128,128)
 BLUE = (20,20,210)
-BROWN = (139,69,19)
-WOOD = (220,181,121)
-SUN = (255,255,0)
+WOOD = (139,69,19)
+YELLOW = (255,255,0)
 ORANGE = (255,165,0)
 
 car_distance = 0
@@ -46,9 +45,8 @@ while not done:
     b += b_change
     NIGHT = (r,g,b)
 
-    if r == 2:
-        time.sleep(3)
     if r == 0:
+        time.sleep(3)
         r_change = r_change * (0-1)
         g_change = g_change * (0-1)
         b_change = b_change * (0-1)
@@ -59,24 +57,23 @@ while not done:
 
     screen.fill(NIGHT)
     
-    pygame.draw.circle(screen, ORANGE, (rect_x, rect_y), 30)
-    pygame.draw.circle(screen, SUN, (rect_x, rect_y), 25)
-    rect_x += rect_change_x
-    rect_y -= rect_change_y
-    if rect_x == 250 and rect_y == 50:
-        time.sleep(4)
-        rect_change_y = rect_change_y * (0-1)
-    elif rect_x == 500 and rect_y == 300:
-        rect_change_y = rect_change_y * (0-1)
-        rect_x = 0
-        rect_y = 300
+    pygame.draw.circle(screen, ORANGE, (circle_x, circle_y), 30)
+    pygame.draw.circle(screen, YELLOW, (circle_x, circle_y), 25)
+    circle_x += circle_change_x
+    circle_y -= circle_change_y
+    if circle_x == 250 and circle_y == 50:
+        time.sleep(3)
+        circle_change_y = circle_change_y * (0-1)
+    elif circle_x == 500 and circle_y == 300:
+        circle_change_y = circle_change_y * (0-1)
+        circle_x = 0
+        circle_y = 300
 
     pygame.draw.rect(screen, GREEN, [0,250,500,50])
-    pygame.draw.rect(screen, GREY, [150,250,350,10])
-    pygame.draw.polygon(screen, GREY, [[150,260],[110,260],[110,270]])
-    pygame.draw.polygon(screen, GREY, [[90,270],[70,250],[90,250]])
-    pygame.draw.rect(screen, GREY, [110,250,40,10])
-    pygame.draw.rect(screen, GREY, [90,250,20,20])
+    pygame.draw.rect(screen, PAVEMENT, [50,250,450,10])
+    pygame.draw.polygon(screen, PAVEMENT, [[150,260],[110,260],[110,270]])
+    pygame.draw.polygon(screen, PAVEMENT, [[90,270],[50,260],[90,260]])
+    pygame.draw.rect(screen, PAVEMENT, [90,260,20,10])
 
     pygame.draw.rect(screen, BLUE, [50,150,100,100])
     pygame.draw.rect(screen, BLACK, [121,105,20,30])
@@ -84,16 +81,16 @@ while not done:
     pygame.draw.rect(screen, WHITE, [90,210,20,40])
     pygame.draw.rect(screen, BLACK, [90,230,5,5])
     if r <= 5:
-        for y_offset in range(1,121,60):
-            pygame.draw.rect(screen, SUN, [60+y_offset,160,20,30])
+        for x_offset in range(1,121,60):
+            pygame.draw.rect(screen, YELLOW, [60+x_offset,160,20,30])
     else:
-        for y_offset in range(1,121,60):
-            pygame.draw.rect(screen, BLACK, [60+y_offset,160,20,30])
-    for y_offset in range(1,241,60):
-        pygame.draw.rect(screen, BROWN, [250+y_offset,200,10,50])
-        pygame.draw.rect(screen, GREEN, [230+y_offset,160,50,40])
-
-
+        for x_offset in range(1,121,60):
+            pygame.draw.rect(screen, BLACK, [60+x_offset,160,20,30])
+    for x_offset in range(1,241,60):
+        pygame.draw.rect(screen, WOOD, [250+x_offset,200,10,50])
+        pygame.draw.circle(screen, GREEN, (240+x_offset,190), 20)
+        pygame.draw.circle(screen, GREEN, (265+x_offset,185), 20)
+        pygame.draw.circle(screen, GREEN, (252+x_offset,165), 20)
 
     car_distance += car_speed
     if car_distance == 500:
