@@ -45,16 +45,12 @@ while not done:
     b += b_change
     NIGHT = (r,g,b)
 
-    if r == 0:
+    if r == 0 or r == 250:
         time.sleep(3)
         r_change = r_change * (0-1)
         g_change = g_change * (0-1)
         b_change = b_change * (0-1)
-    if b == 250:
-        r_change = r_change * (0-1)
-        g_change = g_change * (0-1)
-        b_change = b_change * (0-1)
-
+        
     screen.fill(NIGHT)
     
     pygame.draw.circle(screen, ORANGE, (circle_x, circle_y), 30)
@@ -62,7 +58,6 @@ while not done:
     circle_x += circle_change_x
     circle_y -= circle_change_y
     if circle_x == 250 and circle_y == 50:
-        time.sleep(3)
         circle_change_y = circle_change_y * (0-1)
     elif circle_x == 500 and circle_y == 300:
         circle_change_y = circle_change_y * (0-1)
